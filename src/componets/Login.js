@@ -70,10 +70,7 @@ export default function Login() {
                             </Button>
                             <Grid container>
                                 <Grid item>
-                                    <NavLink className="navbar-item" activeClassName="is-active" to="">
-                                        Página Principal
-                                    </NavLink>
-                                    <Link href="#" variant="body2">
+                                    <Link to="/cadastro" variant="body2">
                                         {"Ainda não possui uma conta? Cadastre-se"}
                                     </Link>
                                 </Grid>
