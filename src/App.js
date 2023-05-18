@@ -1,5 +1,4 @@
-import CadastroUsuario from "./componets/CadastroUsuario";
-
+import RoutesApp from "./routes";
 
 function App() {
   return (
@@ -7,7 +6,7 @@ function App() {
       <header className="App-header">
       </header>
       <body>
-        <CadastroUsuario/>
+      <RoutesApp/>
       </body>
     </div>
   );
