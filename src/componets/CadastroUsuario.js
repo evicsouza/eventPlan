@@ -7,18 +7,26 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
 export default function CadastroUsuario() {
-  const handleSubmit = (event) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState(""); 
+
+    const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      senha: data.get('senha'),
-    });
+    try{
+      axios.post('http://localhost:3000/api/users',  {email, password }) 
+    }
+    catch(erro){
+      if(erro.response && erro.response.status === 400){
+        console.log("errou")
+      }
+    }
   };
 
   return (
@@ -34,19 +42,11 @@ export default function CadastroUsuario() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Cadastro oie
+            Cadastro
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  name="username"
-                  required
-                  fullWidth
-                  id="username"
-                  label="username"
-                  autoFocus
-                />
               </Grid>
               <Grid item xs={12} sm={6}>
               </Grid>
@@ -58,16 +58,18 @@ export default function CadastroUsuario() {
                   label="Email"
                   name="email"
                   autoComplete="email"
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="senha"
-                  label="Senha"
-                  type="senha"
-                  id="senha"
+                  name="password"
+                  label="password"
+                  type="password"
+                  id="password"
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>
             </Grid>

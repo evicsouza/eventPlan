@@ -21,7 +21,6 @@ import CardGrafico from './Cards/CardGrafico';
 import CardCalendario from './Cards/CardCalendario';
 import CardNotas from './Cards/CardNotas';
 import { useEffect, useState } from 'react';
-// Biblioteca para conectar com API
 import axios from 'axios';
 
 
