@@ -40,22 +40,15 @@ export default function CadastroUsuario() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  name="nome"
+                  name="username"
                   required
                   fullWidth
-                  id="nome"
-                  label="Nome"
+                  id="username"
+                  label="username"
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="sobrenome"
-                  label="Sobrenome"
-                  name="sobrenome"
-                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
