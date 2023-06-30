@@ -19,7 +19,7 @@ export default function CadastroUsuario() {
 
     const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
+    try {
       axios.post('http://localhost:3000/api/users',  {email, password }) 
     }
     catch(erro){

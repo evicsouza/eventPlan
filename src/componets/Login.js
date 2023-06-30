@@ -14,14 +14,22 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function Login() {
-    const fazerLogin = (evento) => {
-        evento.preventoDefault();
-        const dadosLogin = new FormData(evento.currentTarget);
-        console.log({
-            email: dadosLogin.get('email'),
-            senha: dadosLogin.get('senha'),
-        });
-    };
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState(""); 
+
+    const handleSubmit = async (event) => {
+    event.preventDefault();
+    try{
+      axios.get('http://localhost:3000/api/authenticate',  {email, password }) 
+    }
+    catch(erro){
+      if(erro.response && erro.response.status === 400){
+        console.log("errou")
+      }
+    }
+  };
+
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -54,8 +62,8 @@ export default function Login() {
                             Entrar
                         </Typography>
                         <Box component="form" noValidate onSubmit={fazerLogin} sx={{ mt: 1 }}>
-                            <TextField margin="normal" required fullWidth id="email" label="Email" name="email" autoComplete="email" autoFocus />
-                            <TextField margin="normal" required fullWidth id="senha" label="Senha" name="senha" autoComplete="current-senha" />
+                            <TextField margin="normal" required fullWidth id="email" label="Email" name="email" autoComplete="email" autoFocus onChange={(event) => setEmail(event.target.value)}/>
+                            <TextField margin="normal" required fullWidth id="senha" label="Senha" name="senha" autoComplete="current-senha" onChange={(event) => setSenha(event.target.value)}/>
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Lembre-se de mim"
