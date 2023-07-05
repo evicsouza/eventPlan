@@ -11,7 +11,7 @@ const RoutesApp = () => {
       <Routes>
         <Route path="/" exact element={ <Login/> } />
         <Route path="/cadastro" element={ <CadastroUsuario/> } />
-        <Route path="/home" element={ <TelaInicial/> } />
+        <Route path="/inicio" element={ <TelaInicial/> } />
       </Routes>
     </Router>
    )

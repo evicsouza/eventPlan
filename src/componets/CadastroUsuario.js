@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -10,20 +9,21 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { NavLink } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function CadastroUsuario() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState(""); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      axios.post('http://localhost:3000/api/users',  {email, password }) 
+      axios.post('http://localhost:3000/api/users', { email, password })
     }
-    catch(erro){
-      if(erro.response && erro.response.status === 400){
+    catch (erro) {
+      if (erro.response && erro.response.status === 400) {
         console.log("errou")
       }
     }
@@ -44,7 +44,7 @@ export default function CadastroUsuario() {
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
               </Grid>
@@ -66,7 +66,7 @@ export default function CadastroUsuario() {
                   required
                   fullWidth
                   name="password"
-                  label="password"
+                  label="Senha"
                   type="password"
                   id="password"
                   onChange={(event) => setPassword(event.target.value)}
@@ -74,18 +74,24 @@ export default function CadastroUsuario() {
               </Grid>
             </Grid>
             <Button
+              onClick={handleSubmit}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Cadastre-se
+              <NavLink to="/">
+                Cadastrar
+              </NavLink>
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Já tem uma conta? Faça Login.
-                </Link>
+                <NavLink to="/" style={({ isActive }) =>
+                  isActive ? { color: 'green' } : undefined
+                }
+                >
+                  Já possui uma conta? Faça login.
+                </NavLink>
               </Grid>
             </Grid>
           </Box>
