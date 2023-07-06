@@ -80,92 +80,92 @@ export default function TelaInicial() {
 
   const [data, setData] = useState([]);
   const getUsers = async () => {
-    await axios.get("http://localhost:3000/api/users")
-    .then((response) => { // Acessa o then quando a API retornar status 200
-      setData(response.data.users);
-    }).catch((err) => {
-      console.log("Erro, tente novamente mais tarde!")
-    })
+    await axios.get("http://localhost:3000/api/users/all")
+      .then((response) => { // Acessa o then quando a API retornar status 200
+        setData(response.data.users);
+      }).catch((err) => {
+        console.log("Erro, tente novamente mais tarde!")
+      })
   }
   useEffect(() => {
     getUsers();
   })
 
-return (
-  <ThemeProvider theme={defaultTheme}>
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="absolute" open={open}>
-        <Toolbar
-          sx={{
-            pr: '24px', // keep right padding when drawer closed
-          }}
-        >
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="absolute" open={open}>
+          <Toolbar
             sx={{
-              marginRight: '24px',
-              ...(open && { display: 'none' }),
+              pr: '24px', // keep right padding when drawer closed
             }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: '24px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+            >
+              EventPlan
+            </Typography>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              px: [1],
+            }}
           >
-            EventPlan
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <Toolbar
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">
+            {menuPrincipal}
+            {/* <Divider sx={{ my: 1 }} />
+            {menuSecundario} */}
+          </List>
+        </Drawer>
+        <Box
+          component="main"
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            px: [1],
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
           }}
         >
-          <IconButton onClick={toggleDrawer}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </Toolbar>
-        <Divider />
-        <List component="nav">
-          {menuPrincipal}
-          {/* <Divider sx={{ my: 1 }} />
-            {menuSecundario} */}
-        </List>
-      </Drawer>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto',
-        }}
-      >
-        <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
-          <Grid container spacing={2}>
-            {/* CardGrafico */}
-            <Grid item xs={6}>
+          <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
+            <Grid container spacing={2}>
+              {/* CardGrafico */}
+              {/* <Grid item xs={6}>
               <Paper
                 sx={{
                   p: 2,
@@ -175,30 +175,30 @@ return (
               >
                 <CardGrafico />
               </Paper>
-            </Grid>
+            </Grid> */}
 
-            {/* CardCalendario */}
-            <Grid item xs={6}>
-              <Paper
-                sx={{
-                  display: 'flex',
-                  height: 300,
-                }}
-              >
-                <CardCalendario />
-              </Paper>
-            </Grid>
+              {/* CardCalendario */}
+              <Grid item xs={8}>
+                <Paper
+                  sx={{
+                    display: 'flex',
+                    height: 400,
+                  }}
+                >
+                  <CardCalendario />
+                </Paper>
+              </Grid>
 
-            {/* Recent CardNotas */}
-            <Grid item xs={12}>
-              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <CardNotas />
-              </Paper>
+              {/* Recent CardNotas */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <CardNotas />
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </Box>
       </Box>
-    </Box>
-  </ThemeProvider>
-);
-              }
+    </ThemeProvider>
+  );
+}

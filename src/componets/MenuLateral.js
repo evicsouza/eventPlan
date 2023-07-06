@@ -7,6 +7,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import TelaTarefas from './TelaTarefas';
+import { NavLink } from 'react-router-dom';
+
 
 export const menuPrincipal = (
   <React.Fragment>
@@ -26,7 +29,9 @@ export const menuPrincipal = (
       <ListItemIcon>
         <ChecklistIcon />
       </ListItemIcon>
-      <ListItemText primary="Tarefas" />
+      <NavLink to="/tarefas">
+      <ListItemText primary="Tarefas"/>
+      </NavLink>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
