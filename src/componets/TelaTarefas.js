@@ -5,8 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import './CSS/Tarefas.css'
-
+import './CSS/Tarefas.css';
 
 
 const TaskList = () => {
@@ -40,10 +39,10 @@ const TaskList = () => {
     }
   };
 
-  const deleteTask = async (taskId) => {
+  const deleteTask = async (_id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/task/delete/${taskId}`);
-      setTasks(tasks.filter((task) => task.id !== taskId));
+      await axios.delete(`http://localhost:3000/task/${_id}`);
+      setTasks(tasks.filter((task) => task.id !== _id));
     } catch (error) {
       console.error('Error deleting task:', error);
     }
@@ -54,9 +53,9 @@ const TaskList = () => {
       <h1>Lista de Tarefas</h1>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
+          <li key={task._id}>
             {task.descricao}
-            <button onClick={() => deleteTask(task.id)}>Apagar</button>
+            <button onClick={() => deleteTask(task._id)}>Apagar</button>
           </li>
         ))}
       </ul>
