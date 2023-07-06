@@ -7,6 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import TelaTarefas from './TelaTarefas';
 
 export const menuPrincipal = (
   <React.Fragment>
@@ -22,7 +23,7 @@ export const menuPrincipal = (
       </ListItemIcon>
       <ListItemText primary="Meus Eventos" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton onClick='/tarefas'>
       <ListItemIcon>
         <ChecklistIcon />
       </ListItemIcon>
