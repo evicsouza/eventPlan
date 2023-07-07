@@ -21,6 +21,7 @@ export default function CadastroUsuario() {
     event.preventDefault();
     try {
       axios.post('http://localhost:3000/api/users', { email, password })
+      console.log(email, password)
     }
     catch (erro) {
       if (erro.response && erro.response.status === 400) {
@@ -66,13 +67,14 @@ export default function CadastroUsuario() {
                   required
                   fullWidth
                   name="password"
-                  label="Senha"
+                  label="Password"
                   type="password"
                   id="password"
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>
             </Grid>
+            <NavLink to="/">
             <Button
               onClick={handleSubmit}
               type="submit"
@@ -80,10 +82,9 @@ export default function CadastroUsuario() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              <NavLink to="/">
                 Cadastrar
-              </NavLink>
             </Button>
+              </NavLink>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <NavLink to="/" style={({ isActive }) =>
