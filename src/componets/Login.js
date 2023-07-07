@@ -71,6 +71,7 @@ export default function Login() {
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Lembre-se de mim"
                             />
+                                <NavLink to="/inicio">
                             <Button
                                 onClick={handleSubmit}
                                 type="submit"
@@ -78,10 +79,9 @@ export default function Login() {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                <NavLink to="/inicio">
                                     Entrar
-                                </NavLink>
                             </Button>
+                                </NavLink>
                             <Grid container>
                                 <Grid item>
                                     <NavLink to="/cadastro" style={({ isActive }) =>
